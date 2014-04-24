@@ -1,6 +1,9 @@
 
 // Global debug / logging flag
 var SCRIPT_DEBUG = true;
+function setLOG(enabled) {
+	SCRIPT_DEBUG = enabled;
+}
 
 // Midi constants
 var MIDI_STATUS_NOTE_ON  = 144;

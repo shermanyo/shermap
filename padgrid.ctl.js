@@ -23,7 +23,7 @@ function PadGrid(buttonCount) {
 	this.playNote = function(pad_index) {
 		var note_val = pad_index + 36;
 		LOG("Pad Note - " + note_val);
-	}
+	};
 
 }
 

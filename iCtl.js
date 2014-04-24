@@ -31,13 +31,13 @@ function iCtl(ctl_count) {
 
 iCtl.prototype.onNoteOn = function(ctl_index, value) {
 	return;
-} 
+}; 
 iCtl.prototype.onNoteOff = function(ctl_index) {
 	return;
-} 
+}; 
 iCtl.prototype.onUpdateCC = function(ctl_index, value) {
 	return;
-} 
+}; 
 
 
 //
@@ -55,7 +55,7 @@ iCtl.prototype.setNoteArray = function(note_array) {
 	}
 	this.is_cc_ctl = false;
 	this.is_note_ctl = true;
-} 
+}; 
 
 iCtl.prototype.setCCArray = function(cc_array) {
 	for(var i = 0; i < cc_array.length; i++) {
@@ -68,7 +68,7 @@ iCtl.prototype.setCCArray = function(cc_array) {
 	}
 	this.is_note_ctl = false;
 	this.is_cc_ctl = true;
-} 
+}; 
 
 iCtl.prototype.setNoteRange = function(note, count) {
 	for(var i = 0; i < count; i++) {
@@ -81,7 +81,7 @@ iCtl.prototype.setNoteRange = function(note, count) {
 	}
 	this.is_cc_ctl = false;
 	this.is_note_ctl = true;
-} 
+}; 
 
 iCtl.prototype.setCCRange = function(cc, count) {
 	for(var i = 0; i < count; i++) {
@@ -94,7 +94,7 @@ iCtl.prototype.setCCRange = function(cc, count) {
 	}
 	this.is_cc_ctl = false;
 	this.is_note_ctl = true;
-} 
+}; 
 
 
 
@@ -107,7 +107,7 @@ iCtl.prototype.setNote = function(index, note) {
 	}
 	this.is_cc_ctl = false;
 	this.is_note_ctl = true;
-} 
+}; 
 
 iCtl.prototype.setCC = function(index, cc) {
 	if(index >= 0 && index <= this.count) {
@@ -117,7 +117,7 @@ iCtl.prototype.setCC = function(index, cc) {
 	}
 	this.is_note_ctl = false;
 	this.is_cc_ctl = true;
-} 
+}; 
 
 
 
@@ -128,7 +128,7 @@ iCtl.prototype.getNoteIndex = function(note) {
 	  }
 	}
 	return -1;
-} 
+}; 
 
 iCtl.prototype.getCCIndex = function(cc) {
 	for(var i = 0; i < this.count; i++) {
@@ -137,7 +137,7 @@ iCtl.prototype.getCCIndex = function(cc) {
 	  }
 	}
 	return -1;
-} 
+}; 
 
 
 iCtl.prototype.noteOn = function(note, velocity) {
@@ -153,7 +153,7 @@ iCtl.prototype.noteOn = function(note, velocity) {
 	this.onNoteOn(ctl_index, velocity);
 
 	return ctl_index;
-}
+};
 
 iCtl.prototype.noteOff = function(note) {
 	if(this.is_note_ctl != true) {
@@ -169,7 +169,7 @@ iCtl.prototype.noteOff = function(note) {
 
 	return ctl_index;
 
-}
+};
 
 iCtl.prototype.updateCC = function(cc, value) {
 	if(is_cc_ctl != true) {
@@ -185,7 +185,7 @@ iCtl.prototype.updateCC = function(cc, value) {
 
 	return ctl_index;
 
-}
+};
 
 
 

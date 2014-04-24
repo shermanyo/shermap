@@ -38,7 +38,7 @@ iCtlMap.prototype.NoteOn = function(note_val, velocity) {
 	}
 
   return null;
-}
+};
 
 /*
 iCtlMap.prototype.NoteOff = function(note_val) {
@@ -63,11 +63,11 @@ iCtlMap.prototype.hasPads = function() {
 
 iCtlMap.prototype.hasPages = function() {
   return 4;
-}
+};
 
 iCtlMap.prototype.hasShift = function() {
   return 1;
-}
+};
 
 
 
