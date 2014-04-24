@@ -5,32 +5,39 @@ Bitwig contol script framework for hardware abstraction.
 
 Included are my main shermap.control.js script and initial quneo.ctlmap.js implementation. 
 
+  
+
 The code defines a couple of new interfaces:
 - iCtl 
   - represents a physical set of MIDI controls. i.e. grid of pads, group of faders, etc...
-  - see *.ctl.js implementations
+  - see \*.ctl.js implementations
 - iCtlMap 
   - represents a virtual midi controller made from a collection of iCtl control sets
   - handles the mapping of incoming MIDI notes / controls, and defines the callbacks
   - see quneo.ctlmap.js implementation
 
+  
 
 To test with a MIDI controller:
 - copy the source to a new BWS control script directory under: sherman/shermap/
 - copy quneo.ctlmap.js to your_controller.ctlmap.js
 - modify the shermap.control.js file to load your new .ctlmap.js instead of the quneo implementation:
-# load('quneo.ctlmap.js');
-# var ctrlmap = new QuneoCtlMap();
-load('your_controller.ctlmap.js');
-var ctrlmap = new YourNewCtlMap();
+```javascript
+//load('quneo.ctlmap.js'); 
+//var ctrlmap = new QuneoCtlMap(); 
+load('your_controller.ctlmap.js'); 
+var ctrlmap = new YourNewCtlMap(); 
+```
 
 - modify your_controller.ctlmap.js to use your new class name:
-#QuneoCtlMap.prototype = new iCtlMap;
-#QuneoCtlMap.prototype.constructor = QuneoCtlMap;
-#function QuneoCtlMap() {
+```javascript
+//QuneoCtlMap.prototype = new iCtlMap;
+//QuneoCtlMap.prototype.constructor = QuneoCtlMap;
+//function QuneoCtlMap() {
 YourNewCtlMap.prototype = new iCtlMap;
 YourNewCtlMap.prototype.constructor = YourNewCtlMap;
 function YourNewCtlMap() {
+```
 
   - update the PadGrid(16), PageSet(4) and ShiftBtn(1) constructors with the correct control count, and setNoteArray() calls with the expected MIDI notes
 - load the script in BWS and assign your controller to the input and output
@@ -38,7 +45,6 @@ function YourNewCtlMap() {
 
 
 Let me know if you have any suggestions, or run into any issues.
-
 
 
 My thanks to: (in no particular order)
