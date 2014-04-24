@@ -132,7 +132,7 @@ iCtl.prototype.getNoteIndex = function(note) {
 
 iCtl.prototype.getCCIndex = function(cc) {
 	for(var i = 0; i < this.count; i++) {
-	  if(note == this.ctlNoteArray[i]) {
+	  if(cc == this.ctlNoteArray[i]) {
 			return i;
 	  }
 	}
