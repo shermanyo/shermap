@@ -1,4 +1,3 @@
-
 // Note: definitions from loadAPI() and load() calls are inherited in included scripts
 
 loadAPI(1);
@@ -18,7 +17,6 @@ var ctrlmap = new QuneoCtlMap();
 host.defineController("sherman", "shermap", "1.0", "d4be8270-ba4d-11e3-a5e2-0800200c9a66");
 host.defineMidiPorts(1, 1);
 
-var cursorTrack = host.createCursorTrackSection(0, 1);
 
 
 function resetDevice()
