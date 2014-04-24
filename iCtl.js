@@ -70,6 +70,33 @@ iCtl.prototype.setCCArray = function(cc_array) {
 	this.is_cc_ctl = true;
 } 
 
+iCtl.prototype.setNoteRange = function(note, count) {
+	for(var i = 0; i < count; i++) {
+	  if(i >= this.ctlNoteArray.length) {
+			break;
+	  }
+	  if(note >= 0 && (note + i) <= 127) {
+			this.ctlNoteArray[i] = note + i;
+	  }
+	}
+	this.is_cc_ctl = false;
+	this.is_note_ctl = true;
+} 
+
+iCtl.prototype.setCCRange = function(cc, count) {
+	for(var i = 0; i < count; i++) {
+	  if(i >= this.ctlCCArray.length) {
+			break;
+	  }
+	  if(cc >= 0 && (cc + i) <= 127) {
+			this.ctlCCArray[i] = cc + i;
+	  }
+	}
+	this.is_cc_ctl = false;
+	this.is_note_ctl = true;
+} 
+
+
 
 
 iCtl.prototype.setNote = function(index, note) {
