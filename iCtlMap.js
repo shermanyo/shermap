@@ -12,17 +12,26 @@ function iCtlMap() {
 
 
 
+// note on handler
 iCtlMap.prototype.NoteOn = function(note_in, velocity) {
 
 	return null;
 }
 
+// note off handler
 iCtlMap.prototype.NoteOff = function(note_in) {
 
 	return null;
 }
 
-iCtlMap.prototype.CCUpdate = function() {
+// cc value change handler
+iCtlMap.prototype.CCUpdate = function(cc_in, value) {
+
+	return null;
+}
+
+// generic midi handler
+iCtlMap.prototype.MidiIn = function(status, data1, data2) {
 
 	return null;
 }
