@@ -7,7 +7,7 @@ function iCtl(ctl_count) {
 
 	this.getTypeID = function() {
 		return this.typeID;
-	}
+	};
 
 	this.ctlNoteArray = initArray(-1, ctl_count);
 	this.is_note_ctl = false;
@@ -20,8 +20,7 @@ function iCtl(ctl_count) {
 
 	this.getCtlCount = function() {
 		return this.count;
-	}
-
+	};
 
 }
 
