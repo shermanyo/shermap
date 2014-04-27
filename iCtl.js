@@ -171,7 +171,7 @@ iCtl.prototype.noteOff = function(note) {
 };
 
 iCtl.prototype.updateCC = function(cc, value) {
-	if(is_cc_ctl != true) {
+	if(this.is_cc_ctl != true) {
 		return -1;
 	}
 

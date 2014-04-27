@@ -62,6 +62,7 @@ function onMidi(status, data1, data2)
 	} else if(isNoteOff(status)) {
 
 	} else if(isChannelController(status)) {
+		ctrlmap.CCUpdate(data1, data2);
 
 	}
 	LOG("shermap: onMidi() done");

@@ -5,6 +5,8 @@ load('iCtlMap.js');
 load('pageset.ctl.js');
 load('padgrid.ctl.js');
 load('shiftbtn.ctl.js');
+load('transport.ctl.js');
+load('mixer.ctl.js');
 
 QuneoCtlMap.prototype = new iCtlMap;
 QuneoCtlMap.prototype.constructor = QuneoCtlMap;
@@ -19,6 +21,12 @@ function QuneoCtlMap() {
 
 	this.shiftbtn = new ShiftBtn(1);
 	this.shiftbtn.setNote(0, 18);
+
+	this.transport = new Transport(3);
+	this.transport.setNoteArray([24, 25, 23]);
+
+	this.mixer = new Mixer(4);
+	this.mixer.setCCArray([0, 1, 2, 3]);
 
 
 }
@@ -35,10 +43,24 @@ iCtlMap.prototype.NoteOn = function(note_val, velocity) {
 	} else if(this.shiftbtn.getNoteIndex(note_val) >= 0) {
 		var ctl_index = this.shiftbtn.noteOn(note_val, velocity);
 		LOG("Shift" + ctl_index + ": On - Shifted: " + this.shiftbtn.getState());
+
+	} else if(this.transport.getNoteIndex(note_val) >= 0) {
+		var ctl_index = this.transport.noteOn(note_val, velocity);
+		LOG("Transport " + ctl_index + ": On - Control: " + this.transport.getNoteIndex(note_val));
+
 	}
 
   return null;
 };
+
+iCtlMap.prototype.CCUpdate = function(cc_in, value) {
+	if(this.mixer.getCCIndex(cc_in) >= 0) {
+		var ctl_index = this.mixer.updateCC(cc_in, value);
+		LOG("Mixer" + ctl_index + ": " + this.mixer.getCtlValue(ctl_index));
+
+	}
+
+}
 
 /*
 iCtlMap.prototype.NoteOff = function(note_val) {
