@@ -11,45 +11,56 @@ load('mixer.ctl.js');
 QuneoCtlMap.prototype = new iCtlMap;
 QuneoCtlMap.prototype.constructor = QuneoCtlMap;
 
+var PADS = 0;
+var PAGES = 1;
+var SHIFT = 2;
+var TRANSPORT = 3;
+var MIXER = 4;
+var SENDS = 5;
+var CTL_COUNT = 6;
+
 function QuneoCtlMap() {
 
-  this.ctl_set = initArray(null, 5);
+  this.ctl_set = initArray(null, CTL_COUNT);
 
 
-	this.ctl_set[0] = new PadGrid(16);
-	this.ctl_set[0].setNoteArray([36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]);
+	this.ctl_set[PADS] = new PadGrid(16);
+	this.ctl_set[PADS].setNoteArray([36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]);
 
-	this.ctl_set[1] = new PageSet(4);
-	this.ctl_set[1].setNoteArray([19, 20, 21, 22]);
+	this.ctl_set[PAGES] = new PageSet(4);
+	this.ctl_set[PAGES].setNoteArray([19, 20, 21, 22]);
 
-	this.ctl_set[2] = new ShiftBtn(1);
-	this.ctl_set[2].setNote(0, 18);
+	this.ctl_set[SHIFT] = new ShiftBtn(1);
+	this.ctl_set[SHIFT].setNote(0, 18);
 
-	this.ctl_set[3] = new Transport(3);
-	this.ctl_set[3].setNoteArray([24, 25, 23]);
+	this.ctl_set[TRANSPORT] = new Transport(3);
+	this.ctl_set[TRANSPORT].setNoteArray([24, 25, 23]);
 
-	this.ctl_set[4] = new Mixer(4);
-	this.ctl_set[4].setCCArray([0, 1, 2, 3]);
+	this.ctl_set[MIXER] = new Mixer(4);
+	this.ctl_set[MIXER].setCCArray([0, 1, 2, 3]);
+
+	this.ctl_set[SENDS] = new Mixer(4);
+	this.ctl_set[SENDS].setCCArray([4, 5, 6, 7]);
 
 
 }
 
 
 QuneoCtlMap.prototype.NoteOn = function(note_val, velocity) {
-	if(this.ctl_set[0].getNoteIndex(note_val) >= 0) {
-		var ctl_index = this.ctl_set[0].noteOn(note_val, velocity);
-		LOG("Pad" + ctl_index + ": On - Pad: " + this.ctl_set[0].getNoteIndex(note_val));
-	} else if(this.ctl_set[1].getNoteIndex(note_val) >= 0) {
-		var ctl_index = this.ctl_set[1].noteOn(note_val, velocity);
-		LOG("Page" + ctl_index + ": On - Page: " + this.ctl_set[1].getPage());
+	if(this.ctl_set[PADS].getNoteIndex(note_val) >= 0) {
+		var ctl_index = this.ctl_set[PADS].noteOn(note_val, velocity);
+		LOG("Pad" + ctl_index + ": On - Pad: " + this.ctl_set[PADS].getNoteIndex(note_val));
+	} else if(this.ctl_set[PAGES].getNoteIndex(note_val) >= 0) {
+		var ctl_index = this.ctl_set[PAGES].noteOn(note_val, velocity);
+		LOG("Page" + ctl_index + ": On - Page: " + this.ctl_set[PAGES].getPage());
 
-	} else if(this.ctl_set[2].getNoteIndex(note_val) >= 0) {
-		var ctl_index = this.ctl_set[2].noteOn(note_val, velocity);
-		LOG("Shift" + ctl_index + ": On - Shifted: " + this.ctl_set[2].getState());
+	} else if(this.ctl_set[SHIFT].getNoteIndex(note_val) >= 0) {
+		var ctl_index = this.ctl_set[SHIFT].noteOn(note_val, velocity);
+		LOG("Shift" + ctl_index + ": On - Shifted: " + this.ctl_set[SHIFT].getState());
 
-	} else if(this.ctl_set[3].getNoteIndex(note_val) >= 0) {
-		var ctl_index = this.ctl_set[3].noteOn(note_val, velocity);
-		LOG("Transport " + ctl_index + ": On - Control: " + this.ctl_set[3].getNoteIndex(note_val));
+	} else if(this.ctl_set[TRANSPORT].getNoteIndex(note_val) >= 0) {
+		var ctl_index = this.ctl_set[TRANSPORT].noteOn(note_val, velocity);
+		LOG("Transport " + ctl_index + ": On - Control: " + this.ctl_set[TRANSPORT].getNoteIndex(note_val));
 
 	}
 
@@ -57,9 +68,13 @@ QuneoCtlMap.prototype.NoteOn = function(note_val, velocity) {
 };
 
 QuneoCtlMap.prototype.CCUpdate = function(cc_in, value) {
-	if(this.ctl_set[4].getCCIndex(cc_in) >= 0) {
-		var ctl_index = this.ctl_set[4].updateCC(cc_in, value);
-		LOG("Mixer" + ctl_index + ": " + this.ctl_set[4].getCtlValue(ctl_index));
+	if(this.ctl_set[MIXER].getCCIndex(cc_in) >= 0) {
+		var ctl_index = this.ctl_set[MIXER].updateCC(cc_in, value);
+		LOG("Mixer" + ctl_index + ": " + this.ctl_set[MIXER].getCtlValue(ctl_index));
+
+	} else if(this.ctl_set[SENDS].getCCIndex(cc_in) >= 0) {
+		var ctl_index = this.ctl_set[SENDS].updateCC(cc_in, value);
+		LOG("Sends" + ctl_index + ": " + this.ctl_set[SENDS].getCtlValue(ctl_index));
 
 	}
 
