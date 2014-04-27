@@ -1,12 +1,6 @@
 LOG("loading iCtlMap.js");
 
-function iCtlMap() {
-
-	this.pads = null;
-
-	this.pages = null;
-
-	this.shiftbtn = null;
+function iCtlMap(ctl_count) {
 
 }
 
