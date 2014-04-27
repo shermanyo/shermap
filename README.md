@@ -15,6 +15,7 @@ Included are my main shermap.control.js script and initial quneo.ctlmap.js imple
   - represents a virtual midi controller made from a collection of iCtl control sets
   - handles the mapping of incoming MIDI notes / controls, and defines the callbacks
   - see quneo.ctlmap.js implementation
+  - Quneo mapping file for the controller editor: QuneoCtlMap.quneopreset
 
   
 
