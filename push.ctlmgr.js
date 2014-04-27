@@ -1,15 +1,15 @@
-LOG("loading push.ctlmap.js");
+LOG("loading push.ctlmgr.js");
 
-load('iCtlMap.js');
+load('iCtlMgr.js');
 
 load('pageset.ctl.js');
 load('padgrid.ctl.js');
 load('shiftbtn.ctl.js');
 
-PushCtlMap.prototype = new iCtlMap;
-PushCtlMap.prototype.constructor = PushCtlMap;
+PushCtlMgr.prototype = new iCtlMgr;
+PushCtlMgr.prototype.constructor = PushCtlMgr;
 
-function PushCtlMap() {
+function PushCtlMgr() {
 
 	this.pads = new PadGrid(16);
 	this.pads.setNoteArray([36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]);
@@ -24,7 +24,7 @@ function PushCtlMap() {
 }
 
 
-iCtlMap.prototype.NoteOn = function(note_val, velocity) {
+PushCtlMgr.prototype.NoteOn = function(note_val, velocity) {
 	if(this.pads.getNoteIndex(note_val) >= 0) {
 		var ctl_index = this.pads.noteOn(note_val, velocity);
 		LOG("Pad" + ctl_index + ": On - Pad: " + this.pads.getNoteIndex(note_val));
@@ -41,7 +41,7 @@ iCtlMap.prototype.NoteOn = function(note_val, velocity) {
 };
 
 /*
-iCtlMap.prototype.NoteOff = function(note_val) {
+PushCtlMgr.prototype.NoteOff = function(note_val) {
 		if(this.pads.getCtlIndex(note_val)) {
 			LOG("Pad" + this.pads.ctlIndex(note_val) + ": Off");
 
@@ -56,16 +56,16 @@ iCtlMap.prototype.NoteOff = function(note_val) {
 */
 
 /*
-iCtlMap.prototype.hasPads = function() {
+PushCtlMgr.prototype.hasPads = function() {
   return 16;
 }
 */
 
-iCtlMap.prototype.hasPages = function() {
+PushCtlMgr.prototype.hasPages = function() {
   return 4;
 };
 
-iCtlMap.prototype.hasShift = function() {
+PushCtlMgr.prototype.hasShift = function() {
   return 1;
 };
 
@@ -74,6 +74,6 @@ iCtlMap.prototype.hasShift = function() {
 
 
 
-LOG("push.ctlmap.js loaded");
+LOG("push.ctlmgr.js loaded");
 
 

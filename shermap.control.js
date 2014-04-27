@@ -6,12 +6,12 @@ loadAPI(1);
 load("sherman_lib.js");
 
 LOG("#######################################################");
-LOG("Loading shermap.control.js ...");
+LOG("Loading shermgr.control.js ...");
 LOG("#######################################################");
 
 
-load("quneo.ctlmap.js");
-var ctrlmap = new QuneoCtlMap();
+load("quneo.ctlmgr.js");
+var ctlmgr = null;
 
 
 host.defineController("sherman", "shermap", "1.0", "d4be8270-ba4d-11e3-a5e2-0800200c9a66");
@@ -39,7 +39,7 @@ function init()
 	host.getMidiInPort(0).setSysexCallback(onSysex);
 
 	
-
+	ctrlmgr = new QuneoCtlMgr();
 
 	resetDevice();
 
@@ -58,11 +58,11 @@ function onMidi(status, data1, data2)
 	LOG("shermap: onMidi(" + status + "," + data1 + "," + data2 + ") ...");
 
 	if(isNoteOn(status)) {
-		ctrlmap.NoteOn(data1, data2);
+		ctrlmgr.NoteOn(data1, data2);
 	} else if(isNoteOff(status)) {
 
 	} else if(isChannelController(status)) {
-		ctrlmap.CCUpdate(data1, data2);
+		ctrlmgr.CCUpdate(data1, data2);
 
 	}
 	LOG("shermap: onMidi() done");

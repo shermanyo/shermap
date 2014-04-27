@@ -3,7 +3,7 @@ shermap
 
 Bitwig contol script framework for hardware abstraction.
 
-Included are my main shermap.control.js script and initial quneo.ctlmap.js implementation. 
+Included are my main shermap.control.js script and initial quneo.ctlmgr.js implementation. 
 
   
 
@@ -11,33 +11,33 @@ Included are my main shermap.control.js script and initial quneo.ctlmap.js imple
 - iCtl 
   - represents a physical set of MIDI controls. i.e. grid of pads, group of faders, etc...
   - see \*.ctl.js implementations
-- iCtlMap 
+- iCtlMgr 
   - represents a virtual midi controller made from a collection of iCtl control sets
   - handles the mapping of incoming MIDI notes / controls, and defines the callbacks
-  - see quneo.ctlmap.js implementation
-  - Quneo mapping file for the controller editor: QuneoCtlMap.quneopreset
+  - see quneo.ctlmgr.js implementation
+  - Quneo mapping file for the controller editor: QuneoCtlMgr.quneopreset
 
   
 
 ### To test with a MIDI controller:
 - copy the source to a new BWS control script directory under: sherman/shermap/
-- copy quneo.ctlmap.js to your_controller.ctlmap.js
-- modify the shermap.control.js file to load your new .ctlmap.js instead of the quneo implementation:
+- copy quneo.ctlmgr.js to your_controller.ctlmgr.js
+- modify the shermap.control.js file to load your new .ctlmgr.js instead of the quneo implementation:
 ```javascript
-//load('quneo.ctlmap.js'); 
-//var ctrlmap = new QuneoCtlMap(); 
-load('your_controller.ctlmap.js'); 
-var ctrlmap = new YourNewCtlMap(); 
+//load('quneo.ctlmgr.js'); 
+//var ctrlmgr = new QuneoCtlMgr(); 
+load('your_controller.ctlmgr.js'); 
+var ctrlmgr = new YourNewCtlMgr(); 
 ```
 
-- modify your_controller.ctlmap.js to use your new class name:
+- modify your_controller.ctlmgr.js to use your new class name:
 ```javascript
-//QuneoCtlMap.prototype = new iCtlMap;
-//QuneoCtlMap.prototype.constructor = QuneoCtlMap;
-//function QuneoCtlMap() {
-YourNewCtlMap.prototype = new iCtlMap;
-YourNewCtlMap.prototype.constructor = YourNewCtlMap;
-function YourNewCtlMap() {
+//QuneoCtlMgr.prototype = new iCtlMgr;
+//QuneoCtlMgr.prototype.constructor = QuneoCtlMgr;
+//function QuneoCtlMgr() {
+YourNewCtlMgr.prototype = new iCtlMgr;
+YourNewCtlMgr.prototype.constructor = YourNewCtlMgr;
+function YourNewCtlMgr() {
 ```
 
 - update the PadGrid(16), PageSet(4) and ShiftBtn(1) constructors with the correct control count, and setNoteArray() calls with the expected MIDI notes

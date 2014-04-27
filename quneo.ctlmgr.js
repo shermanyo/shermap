@@ -1,6 +1,6 @@
-LOG("loading quneo.ctlmap.js");
+LOG("loading quneo.ctlmgr.js");
 
-load('iCtlMap.js');
+load('iCtlMgr.js');
 
 load('pageset.ctl.js');
 load('padgrid.ctl.js');
@@ -8,8 +8,8 @@ load('shiftbtn.ctl.js');
 load('transport.ctl.js');
 load('mixer.ctl.js');
 
-QuneoCtlMap.prototype = new iCtlMap;
-QuneoCtlMap.prototype.constructor = QuneoCtlMap;
+QuneoCtlMgr.prototype = new iCtlMgr;
+QuneoCtlMgr.prototype.constructor = QuneoCtlMgr;
 
 var PADS = 0;
 var PAGES = 1;
@@ -19,7 +19,7 @@ var MIXER = 4;
 var SENDS = 5;
 var CTL_COUNT = 6;
 
-function QuneoCtlMap() {
+function QuneoCtlMgr() {
 
   this.ctl_set = initArray(null, CTL_COUNT);
 
@@ -46,7 +46,7 @@ function QuneoCtlMap() {
 }
 
 
-QuneoCtlMap.prototype.NoteOn = function(note_val, velocity) {
+QuneoCtlMgr.prototype.NoteOn = function(note_val, velocity) {
 	if(this.ctl_set[PADS].getNoteIndex(note_val) >= 0) {
 		var ctl_index = this.ctl_set[PADS].noteOn(note_val, velocity);
 		LOG("Pad" + ctl_index + ": On - Pad: " + this.ctl_set[PADS].getNoteIndex(note_val));
@@ -67,7 +67,7 @@ QuneoCtlMap.prototype.NoteOn = function(note_val, velocity) {
   return null;
 };
 
-QuneoCtlMap.prototype.CCUpdate = function(cc_in, value) {
+QuneoCtlMgr.prototype.CCUpdate = function(cc_in, value) {
 	if(this.ctl_set[MIXER].getCCIndex(cc_in) >= 0) {
 		var ctl_index = this.ctl_set[MIXER].updateCC(cc_in, value);
 		LOG("Mixer" + ctl_index + ": " + this.ctl_set[MIXER].getCtlValue(ctl_index));
@@ -81,21 +81,21 @@ QuneoCtlMap.prototype.CCUpdate = function(cc_in, value) {
 	return null;
 }
 
-QuneoCtlMap.prototype.hasPads = function() {
+QuneoCtlMgr.prototype.hasPads = function() {
   return 16;
 }
 
-QuneoCtlMap.prototype.hasPages = function() {
+QuneoCtlMgr.prototype.hasPages = function() {
   return 4;
 };
 
-QuneoCtlMap.prototype.hasShift = function() {
+QuneoCtlMgr.prototype.hasShift = function() {
   return 1;
 };
 
 
 
 
-LOG("quneo.ctlmap.js loaded");
+LOG("quneo.ctlmgr.js loaded");
 
 

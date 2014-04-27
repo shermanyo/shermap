@@ -12,38 +12,32 @@ function Transport(buttonCount) {
 
 	this.typeID = 'Transport';
 
-	this.playstate = TRANSPORT_STOP;
-	this.recording = false;
+	this.transport = host.createTransport();
 
 	this.onNoteOn = function(ctl_index, value) {
 		if(ctl_index == TRANSPORT_STOP) {
-			this.setStop();
+			this.Stop();
 		} else if(ctl_index == TRANSPORT_PLAY) {
-			this.setPlay();
+			this.Play();
 		} else if(ctl_index == TRANSPORT_RECORD) {
-			this.toggleRecord();
+			this.Record();
 		}
 		return true;
 	};
 
-	this.setPlay = function() {
-		this.playstate = TRANSPORT_PLAY;
-		LOG("Transport - Playing");
+	this.Play = function() {
+		this.transport.play();
+		LOG("Transport - Play");
 	};
 
-	this.setStop = function() {
-		this.playstate = TRANSPORT_STOP;
-		this.recording = false;
-		LOG("Transport - Stopped");
+	this.Stop = function() {
+		this.transport.stop();
+		LOG("Transport - Stop");
 	};
 
-	this.toggleRecord = function() {
-		this.recording = !this.recording;
-		if(this.recording) {
-			LOG("Transport - Recording Started");
-		} else {
-			LOG("Transport - Recording Stopped");
-		}
+	this.Record = function() {
+		this.transport.record();
+		LOG("Transport - Record");
 	};
 
 }
