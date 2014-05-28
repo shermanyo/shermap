@@ -1,7 +1,7 @@
 LOG("loading iCtl.js");
 
 function iCtl(ctl_count) {
-  LOG("iCtl(" + ctl_count + ")");
+	LOG("iCtl(" + ctl_count + ")");
 
 	this.typeID = null;
 

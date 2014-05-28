@@ -4,6 +4,7 @@ loadAPI(1);
 
 // helper functions and constants
 load("sherman_lib.js");
+load("midi_lib.js");
 
 LOG("#######################################################");
 LOG("Loading shermgr.control.js ...");

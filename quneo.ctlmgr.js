@@ -21,7 +21,7 @@ var CTL_COUNT = 6;
 
 function QuneoCtlMgr() {
 
-  this.ctl_set = initArray(null, CTL_COUNT);
+	this.ctl_set = initArray(null, CTL_COUNT);
 
 
 	this.ctl_set[PADS] = new PadGrid(16);
@@ -33,8 +33,18 @@ function QuneoCtlMgr() {
 	this.ctl_set[SHIFT] = new ShiftBtn(1);
 	this.ctl_set[SHIFT].setNote(0, 18);
 
-	this.ctl_set[TRANSPORT] = new Transport(3);
-	this.ctl_set[TRANSPORT].setNoteArray([24, 25, 23]);
+	this.ctl_set[TRANSPORT] = new Transport(11);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_PLAY, 25);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_STOP, 24);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_RECORD, 23);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_REWIND, 10);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_FFWD, 11);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_PUNCH_IN, 12);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_PUNCH_OUT, 13);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_OVERDUB, 14);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_AUTOMATION, 15);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_CLICK, 16);
+	this.ctl_set[TRANSPORT].setNote(TRANSPORT_LOOP, 17);
 
 	this.ctl_set[MIXER] = new Mixer(4);
 	this.ctl_set[MIXER].setCCArray([0, 1, 2, 3]);
